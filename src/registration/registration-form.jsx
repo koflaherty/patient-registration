@@ -1,12 +1,9 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { Form, Input, Radio, Select, Checkbox, Button, DatePicker } from "antd";
+import { Form, Button } from "antd";
+import { Checkbox, Input, Radio, RadioGroup, Select, SelectOption } from "../forms/fields/fields";
 
 const FormItem = Form.Item;
-const RadioGroup = Radio.Group;
-const { Option } = Select;
-const { TextArea } = Input;
-const { RangePicker } = DatePicker;
 
 const formItemLayout = {
     labelCol: {
@@ -47,48 +44,31 @@ const makeField = Component => ({ input, meta, children, hasFeedback, label, ...
     );
 };
 
-const AInput = makeField(Input);
-const ARadioGroup = makeField(RadioGroup);
-const ASelect = makeField(Select);
-const ACheckbox = makeField(Checkbox);
-const ATextarea = makeField(TextArea);
-const ARangePicker = makeField(RangePicker);
-
 
 const RegistrationForm = props => {
     const { handleSubmit, pristine, reset, submitting } = props;
     return (
         <Form onSubmit={handleSubmit}>
-            <Field label="First Name" name="firstName" component={AInput} placeholder="First Name" hasFeedback />
+            <Field label="First Name" name="firstName" component={Input} placeholder="First Name" hasFeedback />
 
-            <Field label="Last Name" name="lastName" component={AInput} placeholder="Last Name" />
+            <Field label="Last Name" name="lastName" component={Input} placeholder="Last Name" />
 
-            <Field label="Email" name="email" component={AInput} type="email" placeholder="Email" />
+            <Field label="Email" name="email" component={Input} type="email" placeholder="Email" />
 
-            <Field label="Sex" name="sex" component={ARadioGroup} value="male">
+            <Field label="Sex" name="sex" component={RadioGroup} value="male">
                 <Radio value="male">Male</Radio>
                 <Radio value="female">Female</Radio>
             </Field>
 
-            <Field label="Favoraite Color" name="favoriteColor" component={ASelect}>
-                <Option value="ff0000">Red</Option>
-                <Option value="00ff00">Green</Option>
-                <Option value="0000ff">Blue</Option>
+            <Field label="Favoraite Color" name="favoriteColor" component={Select}>
+                <SelectOption value="ff0000">Red</SelectOption>
+                <SelectOption value="00ff00">Green</SelectOption>
+                <SelectOption value="0000ff">Blue</SelectOption>
             </Field>
 
-            <Field label="Employed" name="employed" id="employed" component={ACheckbox} type="checkbox" />
+            <Field label="Employed" name="employed" id="employed" component={Checkbox} type="checkbox" />
 
-            <Field
-                label="Filter dates"
-                name="rangepicker"
-                component={ARangePicker}
-                placeholder={["From", "To"]}
-                hasFeedback
-                onFocus={e => e.preventDefault()}
-                onBlur={e => e.preventDefault()}
-            />
-
-            <Field label="Notes" name="notes" component={ATextarea} />
+            <Field label="Notes" name="notes" component={Input} />
 
             <FormItem {...tailFormItemLayout}>
                 <Button type="primary" disabled={pristine || submitting} htmlType="submit" style={{ marginRight: "10px" }}>
