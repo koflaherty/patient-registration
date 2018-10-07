@@ -7,6 +7,7 @@ import Submitted from './pages/submitted/submitted';
 import { Provider } from "react-redux";
 import { store } from "./redux/store/store";
 import { BrowserRouter, Route } from 'react-router-dom'
+import { HOME_PAGE, SUMMARY_PAGE, SUBMITTED_PAGE } from "./constants/routes";
 
 export default function () {
     return (
@@ -14,9 +15,9 @@ export default function () {
             <Provider store={store}>
                 <BrowserRouter>
                     <div className="page__content">
-                        <Route exact path="/"  component={RegistrationContainer} />
-                        <Route exact path="/summary" component={Review} />
-                        <Route exact path="/submitted" component={Submitted} />
+                        <Route exact path={HOME_PAGE} component={RegistrationContainer} />
+                        <Route exact path={SUMMARY_PAGE} component={Review} />
+                        <Route exact path={SUBMITTED_PAGE} component={Submitted} />
                     </div>
                 </BrowserRouter>
             </Provider>

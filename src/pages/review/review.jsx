@@ -6,6 +6,7 @@ import { submitRegistration } from '../../redux/actions/actions';
 import { omit, startCase } from 'lodash';
 import moment from 'moment';
 import { Button } from 'antd';
+import { HOME_PAGE, SUBMITTED_PAGE } from "../../constants/routes";
 
 class Review extends Component {
     constructor() {
@@ -53,12 +54,12 @@ class Review extends Component {
            <div>
                <h1>Does this information look correct?</h1>
                <div>{ this._getSummary() }</div>
-               <Link to="/">
+               <Link to={HOME_PAGE}>
                    <Button style={ { marginRight: '10px' } }>
                        Edit Info
                    </Button>
                </Link>
-               <Link to="/submitted" onClick={this.onConfirmation}>
+               <Link to={SUBMITTED_PAGE} onClick={this.onConfirmation}>
                    <Button type="primary">
                        Complete Registration
                    </Button>

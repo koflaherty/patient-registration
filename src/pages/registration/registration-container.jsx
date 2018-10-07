@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { enteredRegistration } from '../../redux/actions/actions';
 import { ENTERED_REGISTRATION_STATE_KEY } from "../../redux/store/store";
+import { SUMMARY_PAGE } from "../../constants/routes";
 
 class RegistrationContainer extends Component {
     constructor() {
@@ -35,7 +36,7 @@ class RegistrationContainer extends Component {
             <div>
                 <h1>Patient Registration</h1>
                 <RegistrationForm onSubmit={this.onSubmitSuccess} initialValues={ initialData }/>
-                { this.state.registerSuccess && <Redirect push to="/summary" /> }
+                { this.state.registerSuccess && <Redirect push to={SUMMARY_PAGE} /> }
             </div>
         );
     }

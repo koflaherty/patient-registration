@@ -5,10 +5,11 @@ import { shallow, mount } from 'enzyme';
 import RegisrationContainer from './pages/registration/registration-container';
 import Review from './pages/review/review';
 import Submitted from './pages/submitted/submitted';
+import { HOME_PAGE, SUMMARY_PAGE, SUBMITTED_PAGE } from "./constants/routes";
 
 const mountApp = (route) => {
     return mount(
-        <MemoryRouter initialEntries={[ route || '/' ]}>
+        <MemoryRouter initialEntries={[ route || HOME_PAGE ]}>
             <App/>
         </MemoryRouter>
     );
@@ -37,12 +38,12 @@ describe('routes', () => {
 
     describe('summary', () => {
         it('should render correct component', () => {
-            const wrapper = mountApp('/summary');
+            const wrapper = mountApp(SUMMARY_PAGE);
             expect(wrapper.find(Review)).toHaveLength(1);
         });
 
         it('other pages should not be rendered', () => {
-            const wrapper = mountApp('/summary');
+            const wrapper = mountApp(SUMMARY_PAGE);
             expect(wrapper.find(RegisrationContainer)).toHaveLength(0);
             expect(wrapper.find(Submitted)).toHaveLength(0);
         });
@@ -50,12 +51,12 @@ describe('routes', () => {
 
     describe('submitted', () => {
         it('should render correct component', () => {
-            const wrapper = mountApp('/submitted');
+            const wrapper = mountApp(SUBMITTED_PAGE);
             expect(wrapper.find(Submitted)).toHaveLength(1);
         });
 
         it('other pages should not be rendered', () => {
-            const wrapper = mountApp('/submitted');
+            const wrapper = mountApp(SUBMITTED_PAGE);
             expect(wrapper.find(RegisrationContainer)).toHaveLength(0);
             expect(wrapper.find(Review)).toHaveLength(0);
         });
