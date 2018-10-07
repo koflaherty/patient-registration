@@ -1,6 +1,6 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { Form, Button } from "antd";
+import { Form, Button, Skeleton } from "antd";
 import { Checkbox, DatePicker, Input, Textarea } from "../../forms/fields/fields";
 import moment from 'moment';
 
@@ -30,7 +30,8 @@ const RegistrationForm = props => {
             <Field label="Allergies" name="allergies" component={Textarea} />
 
             <h2>Terms and Conditions</h2>
-            <Field label="Agree" name="agree" component={Checkbox} type="checkbox" hasFeedback required />
+            <Skeleton/>
+            <Field label="I Agree" name="agree" component={Checkbox} type="checkbox" hasFeedback required />
 
             <Button type="primary" disabled={submitting} htmlType="submit" style={{ marginRight: "10px" }}>
                 Submit
