@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import RegistrationContainer from './registration/registration-container';
-import Summary from './summary/summary';
+import Review from './review/review';
+import Submitted from './submitted/submitted';
 import { Provider } from "react-redux";
 import { store } from "./redux/store/store";
 import { BrowserRouter, Route } from 'react-router-dom'
@@ -24,8 +25,9 @@ class App extends Component {
             <Provider store={store}>
                 <BrowserRouter>
                     <div>
-                        <Route path="/" exact component={RegistrationContainer} />
-                        <Route path="/summary" component={Summary} />
+                        <Route exact path="/"  component={RegistrationContainer} />
+                        <Route exact path="/summary" component={Review} />
+                        <Route exact path="/submitted" component={Submitted} />
                     </div>
                 </BrowserRouter>
             </Provider>

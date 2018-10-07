@@ -1,4 +1,4 @@
-import {ENTERED_REGISTRATION} from "../actions/actions";
+import {ENTERED_REGISTRATION, SUBMIT_REGISTRATION} from "../actions/actions";
 
 export function enteredRegistration (state = {}, action) {
     switch (action.type) {
@@ -7,6 +7,8 @@ export function enteredRegistration (state = {}, action) {
                 ...state,
                 ...action.data
             };
+        case SUBMIT_REGISTRATION:
+            return { }; // clear registration data
         default:
             return state
     }
