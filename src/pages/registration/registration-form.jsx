@@ -2,6 +2,7 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Form, Button } from "antd";
 import { Checkbox, DatePicker, Input, Select, SelectOption, Textarea } from "../../forms/fields/fields";
+import moment from 'moment';
 
 const FormItem = Form.Item;
 
@@ -50,20 +51,26 @@ const RegistrationForm = props => {
     return (
         <Form onSubmit={handleSubmit}>
             <h2>Patient Information</h2>
-            <Field label="First Name" name="firstName" component={Input} hasFeedback />
-            <Field label="Last Name" name="lastName" component={Input} hasFeedback />
-            <Field label="Date of Birth" name="dateOfBirth" component={DatePicker} />
-            <Field label="Email" name="email" component={Input} type="email" />
-            <Field label="Address" name="address" component={Input} />
+            <Field label="First Name" name="firstName" component={Input} required />
+            <Field label="Last Name" name="lastName" component={Input} required />
+            <Field label="Date of Birth" name="dateOfBirth"
+                   component={DatePicker}
+                   onBlur={e => e.preventDefault()}
+                   onFocus={e => e.preventDefault()}
+                   hasFeedback
+                   required
+            />
+            <Field label="Email (optional)" name="email" component={Input} type="email" />
+            <Field label="Home Address" name="homeAddress" component={Input} required />
 
-            <h2>Medical History</h2>
+            <h2>Medical History (optional)</h2>
 
             <Field label="Family History" name="familyHistory" component={Textarea} />
             <Field label="Medications" name="medications" component={Textarea} />
             <Field label="Diseases" name="diseases" component={Textarea} />
             <Field label="Allergies" name="allergies" component={Textarea} />
 
-            <Field label="Agree" name="agree" component={Checkbox} type="checkbox" />
+            <Field label="Agree" name="agree" component={Checkbox} type="checkbox" hasFeedback required />
 
             <FormItem {...tailFormItemLayout}>
                 <Button type="primary" disabled={submitting} htmlType="submit" style={{ marginRight: "10px" }}>
@@ -76,8 +83,12 @@ const RegistrationForm = props => {
 
 const validate = values => {
     const errors = {};
-    if (!values.firstName) {
-        errors.firstName = "Required";
+    if (values.dateOfBirth && values.dateOfBirth.diff(moment()) > 0) {
+        errors.dateOfBirth = "Date of Birth can not be in the future";
+    }
+
+    if (!values.agree) {
+        errors.agree = "You must agree to register"
     }
 
     return errors;
