@@ -10,18 +10,7 @@ import {
 
 const FormItem = FormAnt.Item;
 
-const defaultFormItemLayout = {
-    labelCol: {
-        xs: { span: 24 },
-        sm: { span: 6 }
-    },
-    wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 14 }
-    }
-};
-
-const makeField = Component => ({ input, meta, children, hasFeedback, label, formItemLayout = defaultFormItemLayout, ...rest }) => {
+const makeField = Component => ({ input, meta, children, hasFeedback, label, formItemLayout = {}, ...rest }) => {
     const hasError = meta.touched && meta.invalid;
     input.value = input.value || undefined;
 

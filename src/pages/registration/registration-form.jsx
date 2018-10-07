@@ -47,10 +47,11 @@ const makeField = Component => ({ input, meta, children, hasFeedback, label, ...
 
 
 const RegistrationForm = props => {
-    const { handleSubmit, pristine, reset, submitting } = props;
+    const { handleSubmit, submitting } = props;
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} layout="vertical">
             <h2>Patient Information</h2>
+
             <Field label="First Name" name="firstName" component={Input} required />
             <Field label="Last Name" name="lastName" component={Input} required />
             <Field label="Date of Birth" name="dateOfBirth"
@@ -70,13 +71,12 @@ const RegistrationForm = props => {
             <Field label="Diseases" name="diseases" component={Textarea} />
             <Field label="Allergies" name="allergies" component={Textarea} />
 
+            <h2>Terms and Conditions</h2>
             <Field label="Agree" name="agree" component={Checkbox} type="checkbox" hasFeedback required />
 
-            <FormItem {...tailFormItemLayout}>
-                <Button type="primary" disabled={submitting} htmlType="submit" style={{ marginRight: "10px" }}>
-                    Submit
-                </Button>
-            </FormItem>
+            <Button type="primary" disabled={submitting} htmlType="submit" style={{ marginRight: "10px" }}>
+                Submit
+            </Button>
         </Form>
     );
 };

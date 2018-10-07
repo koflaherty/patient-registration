@@ -1,0 +1,13 @@
+.page {
+    background: #eaeef1;
+    padding: 60px 20px;
+    min-height: 100vh;
+}
+
+.page__content {
+    background: white;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    border: 1px solid rgba(0,0,0,0.10);
+}
