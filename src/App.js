@@ -22,10 +22,10 @@ class App extends Component {
 
     render() {
         return (
-            <div class="page">
+            <div className="page">
                 <Provider store={store}>
                     <BrowserRouter>
-                        <div class="page__content">
+                        <div className="page__content">
                             <Route exact path="/"  component={RegistrationContainer} />
                             <Route exact path="/summary" component={Review} />
                             <Route exact path="/submitted" component={Submitted} />

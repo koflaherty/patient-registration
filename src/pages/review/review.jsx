@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { ENTERED_REGISTRATION_STATE_KEY } from "../../redux/store/store";
 import { submitRegistration } from '../../redux/actions/actions';
+import { omit, startCase } from 'lodash';
+import moment from 'moment';
+import { Button } from 'antd';
 
 class Review extends Component {
     constructor() {
@@ -23,17 +26,43 @@ class Review extends Component {
 
     _getRegistrationData() {
         const state = this.context.store.getState();
-        return state && state[ENTERED_REGISTRATION_STATE_KEY];
+        return ( state && state[ENTERED_REGISTRATION_STATE_KEY] ) || {};
+    }
+
+    _getSummary() {
+        const ignoreKeys = ["agree"];
+        const summaryData = omit(this._getRegistrationData(), ignoreKeys);
+
+        const summaryItems = Object.entries(summaryData).map(([key, value]) => {
+            if (value instanceof moment) {
+                value = value.format('MMMM Do YYYY');
+            }
+
+            return (
+                <li key={key}>{`${startCase(key)}: ${value}`}</li>
+            );
+        });
+
+        return (
+            <ul>{ summaryItems }</ul>
+        );
     }
 
     render() {
-       const registrationData = this._getRegistrationData();
-
        return (
            <div>
-               <Link to="/">Back</Link>
-               <div>{ JSON.stringify(registrationData)}</div>
-               <Link to="/submitted" onClick={this.onConfirmation}>Confirm Info</Link>
+               <h1>Does this information look correct?</h1>
+               <div>{ this._getSummary() }</div>
+               <Link to="/">
+                   <Button style={ { marginRight: '10px' } }>
+                       Edit Info
+                   </Button>
+               </Link>
+               <Link to="/submitted" onClick={this.onConfirmation}>
+                   <Button type="primary">
+                       Complete Registration
+                   </Button>
+               </Link>
            </div>
        );
     }
