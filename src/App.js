@@ -1,28 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'antd/dist/antd.css';
+import RegistrationContainer from './registration/registration-container';
+import Summary from './summary/summary';
+import { Provider } from "react-redux";
+import { store } from "./redux/store/store";
+import { BrowserRouter, Route } from 'react-router-dom'
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    constructor() {
+        super();
+        this.onRegistrationSubmit = this.onRegistrationSubmit.bind(this);
+    }
+
+    onRegistrationSubmit(arg) {
+        console.log(store.getState());
+        this.setState({
+            showSummary: true
+        });
+    }
+
+    render() {
+        return (
+            <Provider store={store}>
+                <BrowserRouter>
+                    <div>
+                        <Route path="/" exact component={RegistrationContainer} />
+                        <Route path="/summary" component={Summary} />
+                    </div>
+                </BrowserRouter>
+            </Provider>
+        );
+    }
 }
 
 export default App;
