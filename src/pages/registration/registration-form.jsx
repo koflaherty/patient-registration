@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Form, Button } from "antd";
-import { Checkbox, Input, Radio, RadioGroup, Select, SelectOption } from "../forms/fields/fields";
+import { Checkbox, DatePicker, Input, Select, SelectOption, Textarea } from "../../forms/fields/fields";
 
 const FormItem = Form.Item;
 
@@ -49,34 +49,25 @@ const RegistrationForm = props => {
     const { handleSubmit, pristine, reset, submitting } = props;
     return (
         <Form onSubmit={handleSubmit}>
-            <Field label="First Name" name="firstName" component={Input} placeholder="First Name" hasFeedback />
+            <h2>Patient Information</h2>
+            <Field label="First Name" name="firstName" component={Input} hasFeedback />
+            <Field label="Last Name" name="lastName" component={Input} hasFeedback />
+            <Field label="Date of Birth" name="dateOfBirth" component={DatePicker} />
+            <Field label="Email" name="email" component={Input} type="email" />
+            <Field label="Address" name="address" component={Input} />
 
-            <Field label="Last Name" name="lastName" component={Input} placeholder="Last Name" />
+            <h2>Medical History</h2>
 
-            <Field label="Email" name="email" component={Input} type="email" placeholder="Email" />
+            <Field label="Family History" name="familyHistory" component={Textarea} />
+            <Field label="Medications" name="medications" component={Textarea} />
+            <Field label="Diseases" name="diseases" component={Textarea} />
+            <Field label="Allergies" name="allergies" component={Textarea} />
 
-            <Field label="Sex" name="sex" component={RadioGroup} value="male">
-                <Radio value="male">Male</Radio>
-                <Radio value="female">Female</Radio>
-            </Field>
-
-            <Field label="Favoraite Color" name="favoriteColor" component={Select}>
-                <SelectOption value="ff0000">Red</SelectOption>
-                <SelectOption value="00ff00">Green</SelectOption>
-                <SelectOption value="0000ff">Blue</SelectOption>
-            </Field>
-
-            <Field label="Employed" name="employed" id="employed" component={Checkbox} type="checkbox" />
-
-            <Field label="Notes" name="notes" component={Input} />
+            <Field label="Agree" name="agree" component={Checkbox} type="checkbox" />
 
             <FormItem {...tailFormItemLayout}>
-                <Button type="primary" disabled={pristine || submitting} htmlType="submit" style={{ marginRight: "10px" }}>
+                <Button type="primary" disabled={submitting} htmlType="submit" style={{ marginRight: "10px" }}>
                     Submit
-                </Button>
-
-                <Button disabled={pristine || submitting} onClick={reset}>
-                    Clear Values
                 </Button>
             </FormItem>
         </Form>

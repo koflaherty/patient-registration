@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import RegistrationForm from './registration-form';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { enteredRegistration } from '../redux/actions/actions';
-import { ENTERED_REGISTRATION_STATE_KEY } from "../redux/store/store";
+import { enteredRegistration } from '../../redux/actions/actions';
+import { ENTERED_REGISTRATION_STATE_KEY } from "../../redux/store/store";
 
 class RegistrationContainer extends Component {
     constructor() {
@@ -33,6 +33,7 @@ class RegistrationContainer extends Component {
 
         return (
             <div>
+                <h1>Patient Registration</h1>
                 <RegistrationForm onSubmit={this.onSubmitSuccess} initialValues={ initialData }/>
                 { this.state.registerSuccess && <Redirect push to="/summary" /> }
             </div>
