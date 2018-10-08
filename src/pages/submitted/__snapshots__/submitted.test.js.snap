@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders snapshot 1`] = `
+<div>
+  <h1>
+    Registration Complete
+  </h1>
+  <p>
+    Someone will be with you shortly.
+  </p>
+  <a
+    href="/"
+    onClick={[Function]}
+  >
+    Register Another Patient
+  </a>
+</div>
+`;

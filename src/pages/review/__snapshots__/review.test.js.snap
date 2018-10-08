@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders snapshot 1`] = `
+<div>
+  <h1>
+    Does this information look correct?
+  </h1>
+  <div>
+    <ul>
+      <li>
+        First Name: Kevin
+      </li>
+      <li>
+        Last Name: O'Flaherty
+      </li>
+    </ul>
+  </div>
+  <a
+    href="/"
+    onClick={[Function]}
+  >
+    <button
+      className="ant-btn"
+      onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "10px",
+        }
+      }
+      type="button"
+    >
+      <span>
+        Edit Info
+      </span>
+    </button>
+  </a>
+  <a
+    href="/submitted"
+    onClick={[Function]}
+  >
+    <button
+      className="ant-btn ant-btn-primary"
+      onClick={[Function]}
+      type="button"
+    >
+      <span>
+        Complete Registration
+      </span>
+    </button>
+  </a>
+</div>
+`;

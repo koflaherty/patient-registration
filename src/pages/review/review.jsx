@@ -19,9 +19,6 @@ class Review extends Component {
     onConfirmation() {
         const { store } = this.context;
 
-        console.log("Submitted Data");
-        console.log(this._getRegistrationData());
-
         store.dispatch(submitRegistration());
     }
 
